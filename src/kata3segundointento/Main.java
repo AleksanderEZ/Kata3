@@ -1,42 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package kata3segundointento;
 
-package kata3;
-
+import Kata3.view.DefaultHistogramLoader;
+import Kata3.view.CreateHistogramDisplay;
+import Kata3.view.DefaultHistogramDisplay;
+import Model.Histogram;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import javax.swing.JFrame;
-import kata3.core.Histogram;
-import kata3.core.HistogramDisplay;
 
-public class Main extends JFrame{
+public class Main extends JFrame {
     
-    private HistogramDisplay histogramDisplay;
+    private CreateHistogramDisplay histogramDisplay;
     
     public static void main(String[] args) {
         new Main().execute();
+}
+
+    public Main() {
+        super();
+        setTitle("Histogram");
+        setLocation(0, 0);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 600);
+        rootPane.setLayout(new BorderLayout());
+        rootPane.add(createDisplayPanel(), BorderLayout.CENTER);
     }
     
-    public Main(){
-        setTitle("Histogram");
-        setSize(800,600);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        rootPane.setLayout(new BorderLayout());
-        rootPane.add(createHistogramDisplay(), BorderLayout.CENTER);
-    }
-
     private void execute() {
         Histogram histogram = new DefaultHistogramLoader().load();
         histogramDisplay.display(histogram);
         setVisible(true);
     }
-    private DefaultHistogramDisplay createHistogramDisplay(){
+
+    private Component createDisplayPanel() {
         DefaultHistogramDisplay display = new DefaultHistogramDisplay();
         this.histogramDisplay = display;
         return display;
     }
-
 }
